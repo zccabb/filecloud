@@ -2,7 +2,7 @@
 FROM node:16-bullseye AS frontend-builder
 
 COPY ./frontend /work/filecloud
-WORKDIR /work/filecloud
+WORKDIR /work/filecloud/frontend
 
 RUN npm --registry=https://registry.npmmirror.com install
 RUN npm run build
