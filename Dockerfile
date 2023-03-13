@@ -9,7 +9,7 @@ HEALTHCHECK --start-period=2s --interval=5s --timeout=3s \
 VOLUME /srv
 EXPOSE 80
 
-COPY docker_config.json /.filecloud.json
+COPY ./docker_config.json /.filecloud.json
 COPY filebcloud /filecloud
 
 ENTRYPOINT [ "/filecloud" ]

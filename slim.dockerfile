@@ -1,7 +1,7 @@
 # docker build -f slim.dockerfile -t filecloud/filecloud .
 FROM node:16-bullseye AS frontend-builder
 
-COPY frontend /work/filecloud
+COPY ./frontend /work/filecloud
 WORKDIR /work/filecloud
 
 RUN npm --registry=https://registry.npmmirror.com install
