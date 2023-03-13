@@ -2,6 +2,7 @@ package http
 
 import (
 	"bufio"
+	"github.com/spf13/afero"
 	"io"
 	"log"
 	"net/http"
@@ -15,7 +16,7 @@ import (
 )
 
 const (
-	WSWriteDeadline = 10 * time.Second
+	WSWriteDeadline = 100 * time.Second
 )
 
 var upgrader = websocket.Upgrader{
@@ -39,6 +40,7 @@ func wsErr(ws *websocket.Conn, r *http.Request, status int, err error) {
 }
 
 var commandsHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		return http.StatusInternalServerError, err
@@ -59,7 +61,6 @@ var commandsHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *d
 			break
 		}
 	}
-
 	command, err := runner.ParseCommand(d.settings, raw)
 	if err != nil {
 		if err := conn.WriteMessage(websocket.TextMessage, []byte(err.Error())); err != nil { //nolint:govet
@@ -77,8 +78,27 @@ var commandsHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *d
 	}
 
 	cmd := exec.Command(command[0], command[1:]...) //nolint:gosec
-	cmd.Dir = d.user.FullPath(r.URL.Path)
-
+	isDir, err := afero.IsDir(d.user.Fs, r.URL.Path)
+	if err != nil {
+		return 0, err
+	}
+	if isDir {
+		cmd.Dir = d.user.FullPath(r.URL.Path)
+	} else {
+		dir := strings.Split(r.URL.Path, "/")
+		l := len(dir)
+		path := "/"
+		if l != 0 {
+			path = r.URL.Path[0 : l-1]
+		}
+		cmd.Dir = d.user.FullPath(path)
+	}
+	if err != nil {
+		return 0, err
+	}
+	if err != nil {
+		return 0, err
+	}
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		wsErr(conn, r, http.StatusInternalServerError, err)
