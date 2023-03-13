@@ -7,9 +7,9 @@ import (
 	"github.com/asdine/storm/v3"
 	bolt "go.etcd.io/bbolt"
 
-	"github.com/filebrowser/filebrowser/v2/rules"
-	"github.com/filebrowser/filebrowser/v2/storage"
-	"github.com/filebrowser/filebrowser/v2/users"
+	"filecloud/rules"
+	"filecloud/storage"
+	"filecloud/users"
 )
 
 type oldUser struct {
@@ -35,6 +35,7 @@ func readOldUsers(db *storm.DB) ([]*oldUser, error) {
 		return tx.Bucket([]byte("User")).ForEach(func(k []byte, v []byte) error {
 			if len(v) > 0 && string(v)[0] == '{' {
 				user := &oldUser{}
+
 				err := json.Unmarshal(v, user)
 
 				if err != nil {
@@ -47,7 +48,6 @@ func readOldUsers(db *storm.DB) ([]*oldUser, error) {
 			return nil
 		})
 	})
-
 	return oldUsers, err
 }
 

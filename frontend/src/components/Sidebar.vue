@@ -99,7 +99,7 @@
           v-else
           rel="noopener noreferrer"
           target="_blank"
-          href="https://github.com/filebrowser/filebrowser"
+          href="https://github.com/zccabb/filecloud"
           >FileCloud</a
         >
         <span> {{ version }}</span>

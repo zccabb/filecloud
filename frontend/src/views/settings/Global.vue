@@ -48,7 +48,7 @@
             <a
               class="link"
               target="_blank"
-              href="https://filebrowser.org/configuration/custom-branding"
+              href="https://github.com/zccabb/filecloud#%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98"
               >{{ $t("settings.documentation") }}</a
             >
           </i18n>

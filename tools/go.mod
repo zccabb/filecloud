@@ -1,4 +1,4 @@
-module github.com/filebrowser/filebrowser/v2/tools
+module filecloud/tools
 
 go 1.18
 

@@ -10,16 +10,10 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/filebrowser/filebrowser/v2/files"
-	"github.com/filebrowser/filebrowser/v2/img"
+	"filecloud/files"
+	"filecloud/img"
 )
 
-/*
-ENUM(
-thumb
-big
-)
-*/
 type PreviewSize int
 
 type ImgService interface {

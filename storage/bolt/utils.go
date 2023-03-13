@@ -3,7 +3,7 @@ package bolt
 import (
 	"github.com/asdine/storm/v3"
 
-	"github.com/filebrowser/filebrowser/v2/errors"
+	"filecloud/errors"
 )
 
 func get(db *storm.DB, name string, to interface{}) error {

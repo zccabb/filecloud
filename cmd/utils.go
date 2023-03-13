@@ -14,9 +14,9 @@ import (
 	"github.com/spf13/pflag"
 	yaml "gopkg.in/yaml.v2"
 
-	"github.com/filebrowser/filebrowser/v2/settings"
-	"github.com/filebrowser/filebrowser/v2/storage"
-	"github.com/filebrowser/filebrowser/v2/storage/bolt"
+	"filecloud/settings"
+	"filecloud/storage"
+	"filecloud/storage/bolt"
 )
 
 func checkErr(err error) {
@@ -94,7 +94,7 @@ func python(fn pythonFunc, cfg pythonConfig) cobraFunc {
 		} else if exists && cfg.noDB {
 			log.Fatal(path + " already exists")
 		} else if !exists && !cfg.noDB && !cfg.allowNoDB {
-			log.Fatal(path + " does not exist. Please run 'filebrowser config init' first.")
+			log.Fatal(path + " does not exist. Please run 'filecloud config init' first.")
 		}
 
 		data.hadDB = exists

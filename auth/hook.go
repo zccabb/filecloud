@@ -9,10 +9,10 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/filebrowser/filebrowser/v2/errors"
-	"github.com/filebrowser/filebrowser/v2/files"
-	"github.com/filebrowser/filebrowser/v2/settings"
-	"github.com/filebrowser/filebrowser/v2/users"
+	"filecloud/errors"
+	"filecloud/files"
+	"filecloud/settings"
+	"filecloud/users"
 )
 
 // MethodHookAuth is used to identify hook auth.

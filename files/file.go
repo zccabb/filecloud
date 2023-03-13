@@ -19,8 +19,8 @@ import (
 
 	"github.com/spf13/afero"
 
-	"github.com/filebrowser/filebrowser/v2/errors"
-	"github.com/filebrowser/filebrowser/v2/rules"
+	"filecloud/errors"
+	"filecloud/rules"
 )
 
 // FileInfo describes a file.
