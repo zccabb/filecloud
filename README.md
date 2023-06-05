@@ -20,7 +20,7 @@ filebrowser config set --branding.name "My Name" \
 或者可以在“设置”→“全局设置”中的“品牌目录路径”下进行设置。
 如果使用Docker，那么请记住绑定此目录，例如`'/home/username/containers/filebrowser/branding：/branding'`,要识别自定义图标，您需要创建 img 和  img/icons  目录，并将 svg 放在 branding/img 目录中： ​
 要替换图标，您需要将其放在 img/icons 目录中，但也请注意还需要其他一些 PNG 图标类型（请参阅上面的默认标识链接），因为浏览器通常会使用可用的最高分辨率选项（至少 16x16 和 32x32 选项）。您可以使用 以从基本映像生成这些映像。
-## 命令运行器
+## 命令执行器
 命令运行器是一项功能，使您能够在特定事件之前或之后执行您想要的任何 shell 命令。现在，这些是操作：
 
 + Copy
